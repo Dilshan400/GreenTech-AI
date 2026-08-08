@@ -76,7 +76,6 @@ export default function LandingPage() {
             Evaluating Sustainable Electronic Purchases
           </h1>
           <p style={{ fontSize: "1.1rem", color: "var(--text-sub)", lineHeight: "1.6", marginBottom: "36px", maxWidth: "680px", margin: "auto" }}>
-            Helping IT undergraduates and consumers make environmentally responsible device purchases, understand international green certifications, and follow Sri Lankan e-waste disposal guidelines.
           </p>
           <div style={{ display: "flex", gap: "16px", justifyContent: "center" }}>
             <a href="/chat" className="btn-primary" style={{ padding: "12px 24px", fontSize: "0.95rem", textDecoration: "none", display: "flex", alignItems: "center", gap: "8px", borderRadius: "10px" }}>
@@ -92,13 +91,13 @@ export default function LandingPage() {
       {/* 3. Research Banner Section */}
       <section style={{ padding: "0 24px 60px 24px" }}>
         <div style={{ maxWidth: "880px", margin: "auto", backgroundColor: "var(--accent-green)", color: "var(--accent-green-text)", padding: "28px", borderRadius: "18px", borderLeft: "6px solid var(--primary)", boxShadow: "var(--shadow-md)" }}>
-          <h3 style={{ fontSize: "1.1rem", fontWeight: 700, marginBottom: "8px" }}>Research Study Context</h3>
+          <h3 style={{ fontSize: "1.1rem", fontWeight: 700, marginBottom: "8px" }}></h3>
           <p style={{ fontSize: "0.9rem", lineHeight: "1.5" }}>
-            This application serves as a technology demonstrator supporting the research project:
+
             <br />
-            <em style={{ fontWeight: 600 }}>"Assessing the Impact of Green Purchase Intention among IT Undergraduates in State Universities in Sri Lanka, with Special Reference to Electronic Devices"</em>
+            <em style={{ fontWeight: 600 }}>"Assessing the Impact of Green Purchase Intention</em>
             <br /><br />
-            Unlike survey-collection chatbots, this AI is a **retrieval-oriented knowledge advisor**. It helps users browse literature context, evaluate hardware lifecycle data, and find disposal locations.
+            Unlike survey-collection chatbots, this AI is a retrieval-oriented knowledge advisor. It helps users browse literature context, evaluate hardware lifecycle data, and find disposal locations.
           </p>
         </div>
       </section>
@@ -107,7 +106,7 @@ export default function LandingPage() {
       <section style={{ padding: "40px 24px 80px 24px", backgroundColor: "var(--bg-panel)", borderTop: "1px solid var(--border-light)", borderBottom: "1px solid var(--border-light)" }}>
         <div style={{ maxWidth: "1000px", margin: "auto" }}>
           <h2 style={{ fontSize: "1.8rem", fontWeight: 800, textAlign: "center", marginBottom: "40px" }}>Explore Platform Modules</h2>
-          
+
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "20px" }}>
             <div className="starter-card" onClick={() => window.location.href = "/chat"} style={{ display: "flex", flexDirection: "column", height: "100%", justifyContent: "space-between" }}>
               <div>

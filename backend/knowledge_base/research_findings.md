@@ -1,9 +1,5 @@
 # Research Insights: Green Purchase Intention among IT Undergraduates in Sri Lanka
 
-This document summarizes findings and academic frameworks related to the research study:
-*"Assessing the Impact of Green Purchase Intention among IT Undergraduates in State Universities in Sri Lanka, with Special Reference to Electronic Devices"*
-
-IT undergraduates are primary consumers of high-performance electronics (laptops, monitors, smartphones). Understanding their green purchasing behaviors provides crucial data for driving environmental sustainability in the region.
 
 ## Key Factors Influencing Green Purchase Intention
 
