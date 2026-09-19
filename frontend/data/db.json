@@ -1,0 +1,603 @@
+{
+  "sessions": [
+    {
+      "id": "95izqx8j39gcrqb5y6o7nb",
+      "userId": "user_h6zjqml9m",
+      "title": "hii",
+      "createdAt": "2026-08-26T15:30:35.831Z",
+      "updatedAt": "2026-08-26T16:51:01.937Z"
+    },
+    {
+      "id": "atlzzr4tqgar1wiqzjnsd",
+      "userId": "verify_user",
+      "title": "Hello",
+      "createdAt": "2026-08-26T15:39:36.349Z",
+      "updatedAt": "2026-08-26T15:39:38.063Z"
+    },
+    {
+      "id": "satoimk4ehqffbaepg6wx8",
+      "userId": "user_vjdsaureh",
+      "title": "hello",
+      "createdAt": "2026-08-26T15:39:56.254Z",
+      "updatedAt": "2026-08-26T15:50:30.500Z"
+    },
+    {
+      "id": "s7u2cdzy9a9ne725t0ahr",
+      "userId": "verify_user_2",
+      "title": "What is green purchase inte...",
+      "createdAt": "2026-08-26T15:56:10.487Z",
+      "updatedAt": "2026-08-26T15:56:11.790Z"
+    },
+    {
+      "id": "p5qug0r08te8ppsg33sdlw",
+      "userId": "verify_user_3",
+      "title": "What is green purchase inte...",
+      "createdAt": "2026-08-26T15:56:36.486Z",
+      "updatedAt": "2026-08-26T15:56:37.402Z"
+    },
+    {
+      "id": "rvje6djerjspufx74jq0h",
+      "userId": "verify_user_4",
+      "title": "What is green purchase inte...",
+      "createdAt": "2026-08-26T16:00:13.853Z",
+      "updatedAt": "2026-08-26T16:00:15.112Z"
+    }
+  ],
+  "messages": [
+    {
+      "id": "14smwiezmuyu0pjthyyf4",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "hii",
+      "timestamp": "2026-08-26T15:30:37.059Z"
+    },
+    {
+      "id": "tiqqnfwbgrgj99zoybhom",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "👋 **[GreenTech Offline Demo Mode]**\n\nI am running in local offline demo mode because the `GEMINI_API_KEY` environment variable is not configured. However, my RAG search index is active and working!\n\nNo matching document chunks were retrieved for the query: *\"hii\"*.\n\nTry asking questions about topics represented in the sample documents, such as:\n1. **\"EPEAT Gold ratings\"**\n2. **\"recycle e-waste in Sri Lanka\"**\n3. **\"refurbished business laptops vs new consumer models\"** ",
+      "timestamp": "2026-08-26T15:30:39.452Z",
+      "sources": []
+    },
+    {
+      "id": "yx7f0pmcjllkpk1kv361c",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "what is green purchase intention?",
+      "timestamp": "2026-08-26T15:30:59.083Z"
+    },
+    {
+      "id": "nnju36zr5wfbyfa905n1sq",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "👋 **[GreenTech Offline Demo Mode]**\n\nI am running in local offline demo mode because the `GEMINI_API_KEY` environment variable is not configured. However, my RAG search index is active and working!\n\nNo matching document chunks were retrieved for the query: *\"what is green purchase intention?\"*.\n\nTry asking questions about topics represented in the sample documents, such as:\n1. **\"EPEAT Gold ratings\"**\n2. **\"recycle e-waste in Sri Lanka\"**\n3. **\"refurbished business laptops vs new consumer models\"** ",
+      "timestamp": "2026-08-26T15:31:01.454Z",
+      "sources": []
+    },
+    {
+      "id": "lfrhl5u179lhcgot1jogr",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "hellooo",
+      "timestamp": "2026-08-26T15:31:43.523Z"
+    },
+    {
+      "id": "i1edjnvyy5oagsc0wjsh9",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "👋 **[GreenTech Offline Demo Mode]**\n\nI am running in local offline demo mode because the `GEMINI_API_KEY` environment variable is not configured. However, my RAG search index is active and working!\n\nNo matching document chunks were retrieved for the query: *\"hellooo\"*.\n\nTry asking questions about topics represented in the sample documents, such as:\n1. **\"EPEAT Gold ratings\"**\n2. **\"recycle e-waste in Sri Lanka\"**\n3. **\"refurbished business laptops vs new consumer models\"** ",
+      "timestamp": "2026-08-26T15:31:45.932Z",
+      "sources": []
+    },
+    {
+      "id": "a19tmn2d7n4hqn0zuzhpj",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "Hello",
+      "timestamp": "2026-08-26T15:37:31.289Z"
+    },
+    {
+      "id": "edex6zbx9lncro7kgwgz3l",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "👋 **[GreenTech Offline Demo Mode]**\n\nI am running in local offline demo mode because the `GEMINI_API_KEY` environment variable is not configured. However, my RAG search index is active and working!\n\nNo matching document chunks were retrieved for the query: *\"Hello\"*.\n\nTry asking questions about topics represented in the sample documents, such as:\n1. **\"EPEAT Gold ratings\"**\n2. **\"recycle e-waste in Sri Lanka\"**\n3. **\"refurbished business laptops vs new consumer models\"** ",
+      "timestamp": "2026-08-26T15:37:33.537Z",
+      "sources": []
+    },
+    {
+      "id": "3pbfsika2id93q4keitd0n",
+      "sessionId": "atlzzr4tqgar1wiqzjnsd",
+      "sender": "user",
+      "text": "Hello",
+      "timestamp": "2026-08-26T15:39:36.479Z"
+    },
+    {
+      "id": "9p84hvlj0l6tdaf1aohg0b",
+      "sessionId": "atlzzr4tqgar1wiqzjnsd",
+      "sender": "assistant",
+      "text": "Hello! I am GreenTech Advisor AI. Ask me about sustainable electronics, greener buying choices, device longevity, or e-waste handling in Sri Lanka.",
+      "timestamp": "2026-08-26T15:39:38.063Z",
+      "sources": []
+    },
+    {
+      "id": "rd7pzui47ifdvh5yofsva",
+      "sessionId": "satoimk4ehqffbaepg6wx8",
+      "sender": "user",
+      "text": "hello",
+      "timestamp": "2026-08-26T15:39:56.298Z"
+    },
+    {
+      "id": "m47vam8falzq14ftg47j",
+      "sessionId": "satoimk4ehqffbaepg6wx8",
+      "sender": "assistant",
+      "text": "Hello! I am GreenTech Advisor AI. Ask me about sustainable electronics, greener buying choices, device longevity, or e-waste handling in Sri Lanka.",
+      "timestamp": "2026-08-26T15:39:57.894Z",
+      "sources": []
+    },
+    {
+      "id": "o1xmx0u2ytguq3hq48enn8",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "Hello",
+      "timestamp": "2026-08-26T15:41:52.773Z"
+    },
+    {
+      "id": "aq6vyd8doif27lfo08lg2b",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "Hello! I am GreenTech Advisor AI. Ask me about sustainable electronics, greener buying choices, device longevity, or e-waste handling in Sri Lanka.",
+      "timestamp": "2026-08-26T15:41:54.303Z",
+      "sources": []
+    },
+    {
+      "id": "a8yoxllw2ll02t6kbku4v96",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "What is green purchase intention?",
+      "timestamp": "2026-08-26T15:42:06.326Z"
+    },
+    {
+      "id": "i9wwg5v8w5grif7dpejc2",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "I could not find a direct match in the indexed documents for \"What is green purchase intention?\".\n\nTry asking in one of these forms:\n1. \"How do EPEAT Gold ratings affect purchase decisions?\"\n2. \"Where can I recycle e-waste in Sri Lanka?\"\n3. \"Should I buy refurbished business laptops or new consumer models?\"",
+      "timestamp": "2026-08-26T15:42:10.085Z",
+      "sources": []
+    },
+    {
+      "id": "dje2qttlcblx2ucuhe23ke",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "can i know about green efficiency?",
+      "timestamp": "2026-08-26T15:43:03.639Z"
+    },
+    {
+      "id": "j0xjzsj3y3drck2qn68kv",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "I could not find a direct match in the indexed documents for \"can i know about green efficiency?\".\n\nTry asking in one of these forms:\n1. \"How do EPEAT Gold ratings affect purchase decisions?\"\n2. \"Where can I recycle e-waste in Sri Lanka?\"\n3. \"Should I buy refurbished business laptops or new consumer models?\"",
+      "timestamp": "2026-08-26T15:43:07.524Z",
+      "sources": []
+    },
+    {
+      "id": "h87bxwcpi2lj3eywsvzdrc",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "hii",
+      "timestamp": "2026-08-26T15:48:32.791Z"
+    },
+    {
+      "id": "3a8i6wxqhz4k7vgv8t46u",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "Sorry, I encountered an issue generating a response. Please check the backend logs.",
+      "timestamp": "2026-08-26T15:48:36.060Z",
+      "sources": []
+    },
+    {
+      "id": "5nw0jfuajps1782e514kg",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "Hii",
+      "timestamp": "2026-08-26T15:49:37.647Z"
+    },
+    {
+      "id": "96wctqgces5ifuaif8lpa",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "Sorry, I encountered an issue generating a response. Please check the backend logs.",
+      "timestamp": "2026-08-26T15:49:38.975Z",
+      "sources": []
+    },
+    {
+      "id": "5urk2dqng27o4dr50t2bo",
+      "sessionId": "satoimk4ehqffbaepg6wx8",
+      "sender": "user",
+      "text": "hi",
+      "timestamp": "2026-08-26T15:50:29.923Z"
+    },
+    {
+      "id": "m4mytdl8ydfpm5p8vof2",
+      "sessionId": "satoimk4ehqffbaepg6wx8",
+      "sender": "assistant",
+      "text": "Sorry, I encountered an issue generating a response. Please check the backend logs.",
+      "timestamp": "2026-08-26T15:50:30.500Z",
+      "sources": []
+    },
+    {
+      "id": "fztn77cvj08pio16cmwxqi",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "hiiiiii",
+      "timestamp": "2026-08-26T15:50:56.319Z"
+    },
+    {
+      "id": "n59shqdcoygrdbbfdhum2",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "👋 **[GreenTech Offline Demo Mode]**\n\nI am running in local offline demo mode because the `GEMINI_API_KEY` environment variable is not configured. However, my RAG search index is active and working!\n\nNo matching document chunks were retrieved for the query: *\"hiiiiii\"*.\n\nTry asking questions about topics represented in the sample documents, such as:\n1. **\"EPEAT Gold ratings\"**\n2. **\"recycle e-waste in Sri Lanka\"**\n3. **\"refurbished business laptops vs new consumer models\"** ",
+      "timestamp": "2026-08-26T15:50:58.570Z",
+      "sources": []
+    },
+    {
+      "id": "eyvdoyxve3amgf0vpsg74",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "What is green purchase intention?",
+      "timestamp": "2026-08-26T15:52:35.806Z"
+    },
+    {
+      "id": "c64hb8qbi37laz137pvu",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "👋 **[GreenTech Offline Demo Mode]**\n\nI am running in local offline demo mode because the `GEMINI_API_KEY` environment variable is not configured. However, my RAG search index is active and working!\n\nNo matching document chunks were retrieved for the query: *\"What is green purchase intention?\"*.\n\nTry asking questions about topics represented in the sample documents, such as:\n1. **\"EPEAT Gold ratings\"**\n2. **\"recycle e-waste in Sri Lanka\"**\n3. **\"refurbished business laptops vs new consumer models\"** ",
+      "timestamp": "2026-08-26T15:52:38.232Z",
+      "sources": []
+    },
+    {
+      "id": "d1myaqa115olr1664dr49",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "Hello",
+      "timestamp": "2026-08-26T15:56:03.626Z"
+    },
+    {
+      "id": "auy65hxklbv7p586432cs",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "Sorry, I encountered an issue generating a response. Please check the backend logs.",
+      "timestamp": "2026-08-26T15:56:04.995Z",
+      "sources": []
+    },
+    {
+      "id": "z5moas3qvui9sbhl9xa5h",
+      "sessionId": "s7u2cdzy9a9ne725t0ahr",
+      "sender": "user",
+      "text": "What is green purchase intention?",
+      "timestamp": "2026-08-26T15:56:10.606Z"
+    },
+    {
+      "id": "6e4x49w312qx535hcdv38",
+      "sessionId": "s7u2cdzy9a9ne725t0ahr",
+      "sender": "assistant",
+      "text": "Sorry, I encountered an issue generating a response. Please check the backend logs.",
+      "timestamp": "2026-08-26T15:56:11.790Z",
+      "sources": []
+    },
+    {
+      "id": "t2cebm4727vvg6h1l031",
+      "sessionId": "p5qug0r08te8ppsg33sdlw",
+      "sender": "user",
+      "text": "What is green purchase intention?",
+      "timestamp": "2026-08-26T15:56:36.588Z"
+    },
+    {
+      "id": "cklemop695pqtzncl7axh",
+      "sessionId": "p5qug0r08te8ppsg33sdlw",
+      "sender": "assistant",
+      "text": "I could not find a direct match in the indexed documents for \"What is green purchase intention?\".\n\nTry asking in one of these forms:\n1. \"How do EPEAT Gold ratings affect purchase decisions?\"\n2. \"Where can I recycle e-waste in Sri Lanka?\"\n3. \"Should I buy refurbished business laptops or new consumer models?\"",
+      "timestamp": "2026-08-26T15:56:37.402Z",
+      "sources": []
+    },
+    {
+      "id": "qzqwwefz9zsrmbr7xtxha",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "Hello",
+      "timestamp": "2026-08-26T15:57:00.360Z"
+    },
+    {
+      "id": "a23m05ia6mlcleomqafxpo",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "Hello! I am GreenTech Advisor AI. Ask me about sustainable electronics, green buying choices, device longevity, or e-waste handling in Sri Lanka.",
+      "timestamp": "2026-08-26T15:57:01.466Z",
+      "sources": []
+    },
+    {
+      "id": "sg33p9dspgek4uu5z89lxf",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "What is GPI",
+      "timestamp": "2026-08-26T15:57:10.170Z"
+    },
+    {
+      "id": "9goph0fw31tb6dr2d48il",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "I could not find a direct match in the indexed documents for \"What is GPI\".\n\nTry asking in one of these forms:\n1. \"How do EPEAT Gold ratings affect purchase decisions?\"\n2. \"Where can I recycle e-waste in Sri Lanka?\"\n3. \"Should I buy refurbished business laptops or new consumer models?\"",
+      "timestamp": "2026-08-26T15:57:10.837Z",
+      "sources": []
+    },
+    {
+      "id": "s9zqu346metylwy7hswi",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "hi",
+      "timestamp": "2026-08-26T15:59:45.862Z"
+    },
+    {
+      "id": "bkmdfj1vkkl82q23s0ugsb",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "Hello! I am GreenTech Advisor AI. Ask me about sustainable electronics, green buying choices, device longevity, or e-waste handling in Sri Lanka.",
+      "timestamp": "2026-08-26T15:59:46.552Z",
+      "sources": []
+    },
+    {
+      "id": "90f6g7awf9lrhk82pvx6a",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "What is Green purchase intention",
+      "timestamp": "2026-08-26T15:59:57.173Z"
+    },
+    {
+      "id": "fkub3wel7qscgjhau8gtp",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "I could not find a direct match in the indexed documents for \"What is Green purchase intention\".\n\nTry asking in one of these forms:\n1. \"How do EPEAT Gold ratings affect purchase decisions?\"\n2. \"Where can I recycle e-waste in Sri Lanka?\"\n3. \"Should I buy refurbished business laptops or new consumer models?\"",
+      "timestamp": "2026-08-26T15:59:58.269Z",
+      "sources": []
+    },
+    {
+      "id": "0mltjafr3bjvay89lug7i",
+      "sessionId": "rvje6djerjspufx74jq0h",
+      "sender": "user",
+      "text": "What is green purchase intention?",
+      "timestamp": "2026-08-26T16:00:13.925Z"
+    },
+    {
+      "id": "uaqbtrcts9n1tat4acb8ks",
+      "sessionId": "rvje6djerjspufx74jq0h",
+      "sender": "assistant",
+      "text": "I could not find a direct match in the indexed documents for \"What is green purchase intention?\".\n\nTry asking in one of these forms:\n1. \"How do EPEAT Gold ratings affect purchase decisions?\"\n2. \"Where can I recycle e-waste in Sri Lanka?\"\n3. \"Should I buy refurbished business laptops or new consumer models?\"",
+      "timestamp": "2026-08-26T16:00:15.112Z",
+      "sources": []
+    },
+    {
+      "id": "b7ydzlfe57t54jq1fbp9vd",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "What is Green purchase intention",
+      "timestamp": "2026-08-26T16:03:58.244Z"
+    },
+    {
+      "id": "bctv1l9dpsz4yv5fh5zr9",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "I could not find a direct match in the indexed documents for \"What is Green purchase intention\".\n\nTry asking in one of these forms:\n1. \"How do EPEAT Gold ratings affect purchase decisions?\"\n2. \"Where can I recycle e-waste in Sri Lanka?\"\n3. \"Should I buy refurbished business laptops or new consumer models?\"",
+      "timestamp": "2026-08-26T16:04:01.499Z",
+      "sources": []
+    },
+    {
+      "id": "i6kgu4w6dgcnb1za7d23y",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "Hello",
+      "timestamp": "2026-08-26T16:25:55.411Z"
+    },
+    {
+      "id": "16rnrtenpk5x3i9es9xy3",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "Hello! I am GreenTech Advisor AI. Ask me about sustainable electronics, green buying choices, device longevity, or e-waste handling in Sri Lanka.",
+      "timestamp": "2026-08-26T16:26:06.222Z",
+      "sources": []
+    },
+    {
+      "id": "qhabpyc3czm2xxcip0gte",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "What is green purchase intention",
+      "timestamp": "2026-08-26T16:26:28.623Z"
+    },
+    {
+      "id": "feo2u2hthgozwv0tpgnuba",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "I could not find a direct match in the indexed documents for \"What is green purchase intention\".\n\nTry asking in one of these forms:\n1. \"How do EPEAT Gold ratings affect purchase decisions?\"\n2. \"Where can I recycle e-waste in Sri Lanka?\"\n3. \"Should I buy refurbished business laptops or new consumer models?\"",
+      "timestamp": "2026-08-26T16:26:29.588Z",
+      "sources": []
+    },
+    {
+      "id": "jupmxu589oqzrof58ihrvt",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "What is green purchase intention",
+      "timestamp": "2026-08-26T16:28:21.733Z"
+    },
+    {
+      "id": "pkd1h3gi2lws7clilvyk",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "I could not find a direct match in the indexed documents for \"What is green purchase intention\".\n\nTry asking in one of these forms:\n1. \"How do EPEAT Gold ratings affect purchase decisions?\"\n2. \"Where can I recycle e-waste in Sri Lanka?\"\n3. \"Should I buy refurbished business laptops or new consumer models?\"",
+      "timestamp": "2026-08-26T16:28:23.879Z",
+      "sources": []
+    },
+    {
+      "id": "yghk86q5625ab78poojlp",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "What is green purchase intention",
+      "timestamp": "2026-08-26T16:29:40.235Z"
+    },
+    {
+      "id": "6w27knhxvvhjot9etjevyf",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "I could not find a direct match in the indexed documents for \"What is green purchase intention\".\n\nTry asking in one of these forms:\n1. \"How do EPEAT Gold ratings affect purchase decisions?\"\n2. \"Where can I recycle e-waste in Sri Lanka?\"\n3. \"Should I buy refurbished business laptops or new consumer models?\"",
+      "timestamp": "2026-08-26T16:29:40.942Z",
+      "sources": []
+    },
+    {
+      "id": "xphg1ssi90g5nnq5imkcx",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "What is green purchase intention",
+      "timestamp": "2026-08-26T16:32:23.685Z"
+    },
+    {
+      "id": "fo99ittj9jxwaevgicog",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "I could not find a direct match in the indexed documents for \"What is green purchase intention\".\n\nTry asking in one of these forms:\n1. \"How do EPEAT Gold ratings affect purchase decisions?\"\n2. \"Where can I recycle e-waste in Sri Lanka?\"\n3. \"Should I buy refurbished business laptops or new consumer models?\"",
+      "timestamp": "2026-08-26T16:32:30.034Z",
+      "sources": []
+    },
+    {
+      "id": "9w0d9rnvqewbzwcj0635m",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "hi",
+      "timestamp": "2026-08-26T16:39:07.455Z"
+    },
+    {
+      "id": "in7t96zs38g503tut9stya",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "Hello! I am GreenTech Advisor AI. Ask me about sustainable electronics, green buying choices, device longevity, or e-waste handling in Sri Lanka.",
+      "timestamp": "2026-08-26T16:39:09.252Z",
+      "sources": []
+    },
+    {
+      "id": "ld1qkt0bn1auxliv4quvx",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "What is green purchase intention",
+      "timestamp": "2026-08-26T16:39:37.663Z"
+    },
+    {
+      "id": "r3do1sxosmrschx1zi8o7",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "I could not find a direct match in the indexed documents for \"What is green purchase intention\".\n\nTry asking in one of these forms:\n1. \"How do EPEAT Gold ratings affect purchase decisions?\"\n2. \"Where can I recycle e-waste in Sri Lanka?\"\n3. \"Should I buy refurbished business laptops or new consumer models?\"",
+      "timestamp": "2026-08-26T16:39:38.176Z",
+      "sources": []
+    },
+    {
+      "id": "tewmeh1bbmh90uqimbjcjt",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "Where can I recycle e-waste in Sri Lanka?",
+      "timestamp": "2026-08-26T16:39:45.877Z"
+    },
+    {
+      "id": "3eor8rb8v94igvmn5l5sa",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "I could not find a direct match in the indexed documents for \"Where can I recycle e-waste in Sri Lanka?\".\n\nTry asking in one of these forms:\n1. \"How do EPEAT Gold ratings affect purchase decisions?\"\n2. \"Where can I recycle e-waste in Sri Lanka?\"\n3. \"Should I buy refurbished business laptops or new consumer models?\"",
+      "timestamp": "2026-08-26T16:39:47.178Z",
+      "sources": []
+    },
+    {
+      "id": "fbfc10qcegqp89q47cnpdg",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "Where can I recycle e-waste in Sri Lanka?",
+      "timestamp": "2026-08-26T16:42:08.231Z"
+    },
+    {
+      "id": "fk71sj4iamo0bl8bd4uccgh",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "I could not find a direct match in the indexed documents for \"Where can I recycle e-waste in Sri Lanka?\".\n\nTry asking in one of these forms:\n1. \"How do EPEAT Gold ratings affect purchase decisions?\"\n2. \"Where can I recycle e-waste in Sri Lanka?\"\n3. \"Should I buy refurbished business laptops or new consumer models?\"",
+      "timestamp": "2026-08-26T16:42:12.761Z",
+      "sources": []
+    },
+    {
+      "id": "w5zqdkr3a7i738u2czqs8",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "Green tech",
+      "timestamp": "2026-08-26T16:46:30.474Z"
+    },
+    {
+      "id": "m7516mfgwdfzcgrugbym",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "I could not find a direct match in the indexed documents for \"Green tech\".\n\nTry asking in one of these forms:\n1. \"How do EPEAT Gold ratings affect purchase decisions?\"\n2. \"Where can I recycle e-waste in Sri Lanka?\"\n3. \"Should I buy refurbished business laptops or new consumer models?\"",
+      "timestamp": "2026-08-26T16:46:31.526Z",
+      "sources": []
+    },
+    {
+      "id": "9of3zaq3iy47fga90jmb5e",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "hiiii",
+      "timestamp": "2026-08-26T16:48:35.531Z"
+    },
+    {
+      "id": "ikt7t7td9g8dgharksh93r",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "I could not find a direct match in the indexed documents for \"hiiii\".\n\nTry asking in one of these forms:\n1. \"How do EPEAT Gold ratings affect purchase decisions?\"\n2. \"Where can I recycle e-waste in Sri Lanka?\"\n3. \"Should I buy refurbished business laptops or new consumer models?\"",
+      "timestamp": "2026-08-26T16:48:38.989Z",
+      "sources": []
+    },
+    {
+      "id": "svdypy05fohy4c1rm0u9ne",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "Hello",
+      "timestamp": "2026-08-26T16:48:45.034Z"
+    },
+    {
+      "id": "gtxjrioxm7guyoc81jvkc",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "Hello! I am GreenTech Advisor AI. Ask me about sustainable electronics, green buying choices, device longevity, or e-waste handling in Sri Lanka.",
+      "timestamp": "2026-08-26T16:48:46.517Z",
+      "sources": []
+    },
+    {
+      "id": "pr0wvqj8flhuzphtw2xs7",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "Green tech",
+      "timestamp": "2026-08-26T16:49:16.809Z"
+    },
+    {
+      "id": "kz8l0y2l9lwngcsoeak4h",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "I could not find a direct match in the indexed documents for \"Green tech\".\n\nTry asking in one of these forms:\n1. \"How do EPEAT Gold ratings affect purchase decisions?\"\n2. \"Where can I recycle e-waste in Sri Lanka?\"\n3. \"Should I buy refurbished business laptops or new consumer models?\"",
+      "timestamp": "2026-08-26T16:49:20.620Z",
+      "sources": []
+    },
+    {
+      "id": "pu9pykyetwp6g75p8af0s6",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "hiii",
+      "timestamp": "2026-08-26T16:50:59.523Z"
+    },
+    {
+      "id": "a41dp5dkl4e2bow8abh1pt",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "I could not find a direct match in the indexed documents for \"hiii\".\n\nTry asking in one of these forms:\n1. \"How do EPEAT Gold ratings affect purchase decisions?\"\n2. \"Where can I recycle e-waste in Sri Lanka?\"\n3. \"Should I buy refurbished business laptops or new consumer models?\"",
+      "timestamp": "2026-08-26T16:51:01.937Z",
+      "sources": []
+    }
+  ]
+}

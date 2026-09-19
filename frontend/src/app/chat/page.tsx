@@ -49,8 +49,6 @@ interface Session {
   updatedAt: string;
 }
 
-const BACKEND_URL = "http://localhost:8000";
-
 export default function GreenTechChat() {
   const [userId, setUserId] = useState<string>("");
   const [sessions, setSessions] = useState<Session[]>([]);
@@ -115,17 +113,15 @@ export default function GreenTechChat() {
 
   const fetchSessions = async () => {
     try {
-      const res = await fetch(`${BACKEND_URL}/api/conversations`, {
-        headers: { "X-User-ID": userId }
-      });
+      const res = await fetch(`/api/sessions?userId=${encodeURIComponent(userId)}`);
       if (res.ok) {
         const data = await res.json();
         const mappedSessions = data.map((c: any) => ({
           id: c.id,
-          userId: c.user_id,
+          userId: c.userId,
           title: c.title || "New Consultation",
-          createdAt: c.created_at,
-          updatedAt: c.created_at
+          createdAt: c.createdAt,
+          updatedAt: c.updatedAt
         }));
         setSessions(mappedSessions);
         if (mappedSessions.length > 0 && !activeSessionId) {
@@ -139,16 +135,20 @@ export default function GreenTechChat() {
 
   const fetchMessages = async (sessionId: string) => {
     try {
-      const res = await fetch(`${BACKEND_URL}/api/conversations/${sessionId}/messages`, {
-        headers: { "X-User-ID": userId }
-      });
+      const res = await fetch(`/api/sessions/${sessionId}?userId=${encodeURIComponent(userId)}`);
       if (res.ok) {
         const data = await res.json();
         const mappedMessages = data.map((m: any) => {
           // Extract citations from message content if present
           let sourcesList: SourceCitation[] = [];
-          if (m.sender_type === "assistant" && m.message_content.includes("*[Source:")) {
-            const parts = m.message_content.split("*[Source:");
+          if (Array.isArray(m.sources) && m.sources.length > 0) {
+            sourcesList = m.sources.map((s: any, index: number) => ({
+              id: index + 1,
+              documentName: s.documentName,
+              snippet: s.snippet || "Referenced literature parameters."
+            }));
+          } else if (m.sender === "assistant" && m.text.includes("*[Source:")) {
+            const parts = m.text.split("*[Source:");
             if (parts.length > 1) {
               const citationText = parts[1].replace("]*", "").trim();
               const citations = citationText.split("|").map((c: string) => c.trim());
@@ -161,9 +161,9 @@ export default function GreenTechChat() {
           }
           return {
             id: m.id,
-            sessionId: m.conversation_id,
-            sender: m.sender_type,
-            text: m.message_content,
+            sessionId: m.sessionId,
+            sender: m.sender,
+            text: m.text,
             timestamp: m.timestamp,
             sources: sourcesList
           };
@@ -177,21 +177,21 @@ export default function GreenTechChat() {
 
   const handleNewChat = async () => {
     try {
-      const res = await fetch(`${BACKEND_URL}/api/conversations`, {
+      const res = await fetch("/api/sessions", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          "X-User-ID": userId
-        }
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ userId })
       });
       if (res.ok) {
         const c = await res.json();
         const newSession: Session = {
           id: c.id,
-          userId: c.user_id,
+          userId: c.userId,
           title: c.title || "New Consultation",
-          createdAt: c.created_at,
-          updatedAt: c.created_at
+          createdAt: c.createdAt,
+          updatedAt: c.updatedAt
         };
         setSessions((prev) => [newSession, ...prev]);
         setActiveSessionId(newSession.id);
@@ -205,13 +205,12 @@ export default function GreenTechChat() {
   const handleRenameSession = async (sessionId: string) => {
     if (!editTitleText.trim()) return;
     try {
-      const res = await fetch(`${BACKEND_URL}/api/conversations/${sessionId}`, {
+      const res = await fetch(`/api/sessions/${sessionId}`, {
         method: "PATCH",
         headers: {
-          "Content-Type": "application/json",
-          "X-User-ID": userId
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify({ title: editTitleText.trim() }),
+        body: JSON.stringify({ title: editTitleText.trim(), userId }),
       });
       if (res.ok) {
         setSessions((prev) =>
@@ -229,9 +228,8 @@ export default function GreenTechChat() {
     e.stopPropagation();
     if (!confirm("Are you sure you want to delete this chat history?")) return;
     try {
-      const res = await fetch(`${BACKEND_URL}/api/conversations/${sessionId}`, {
+      const res = await fetch(`/api/sessions/${sessionId}?userId=${encodeURIComponent(userId)}`, {
         method: "DELETE",
-        headers: { "X-User-ID": userId }
       });
       if (res.ok) {
         setSessions((prev) => prev.filter((s) => s.id !== sessionId));
@@ -265,12 +263,12 @@ export default function GreenTechChat() {
 
     if (!currentSessionId) {
       try {
-        const res = await fetch(`${BACKEND_URL}/api/conversations`, {
+        const res = await fetch("/api/sessions", {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
-            "X-User-ID": userId
-          }
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ userId })
         });
         if (res.ok) {
           const newSession = await res.json();
@@ -278,10 +276,10 @@ export default function GreenTechChat() {
           setActiveSessionId(currentSessionId);
           setSessions((prev) => [{
             id: newSession.id,
-            userId: newSession.user_id,
+            userId: newSession.userId,
             title: newSession.title || "New Consultation",
-            createdAt: newSession.created_at,
-            updatedAt: newSession.created_at
+            createdAt: newSession.createdAt,
+            updatedAt: newSession.updatedAt
           }, ...prev]);
         } else {
           console.error("Failed to initialize session");
@@ -294,7 +292,7 @@ export default function GreenTechChat() {
     }
 
     const tempUserMsg: Message = {
-      id: "temp_user_msg",
+      id: `temp_user_msg_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
       sessionId: currentSessionId,
       sender: "user",
       text: messageContent,
@@ -302,7 +300,7 @@ export default function GreenTechChat() {
     };
 
     const tempBotMsg: Message = {
-      id: "temp_bot_msg",
+      id: `temp_bot_msg_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`,
       sessionId: currentSessionId,
       sender: "assistant",
       text: "",
@@ -314,41 +312,102 @@ export default function GreenTechChat() {
     setIsGenerating(true);
 
     try {
-      const response = await fetch(`${BACKEND_URL}/api/chat`, {
+      const response = await fetch("/api/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "X-User-ID": userId,
         },
         body: JSON.stringify({
+          sessionId: currentSessionId,
           message: messageContent,
-          conversation_id: currentSessionId,
+          userId,
         }),
       });
 
       if (!response.ok) {
-        throw new Error("API call failed");
+        const errText = await response.text();
+        throw new Error(errText || "API call failed");
       }
 
-      const data = await response.json();
+      if (!response.body) {
+        throw new Error("Streaming response body is missing");
+      }
 
-      const formattedSources = data.sources.map((s: string, index: number) => ({
-        id: index + 1,
-        documentName: s,
-        snippet: "Referenced study details."
-      }));
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let buffer = "";
+      let accumulatedText = "";
+      let streamedSources: SourceCitation[] = [];
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+        const events = buffer.split("\n\n");
+        buffer = events.pop() || "";
+
+        for (const rawEvent of events) {
+          const lines = rawEvent.split("\n");
+          let eventName = "message";
+          let dataPayload = "";
+
+          for (const line of lines) {
+            if (line.startsWith("event:")) {
+              eventName = line.slice(6).trim();
+            } else if (line.startsWith("data:")) {
+              dataPayload += line.slice(5).trim();
+            }
+          }
+
+          if (eventName === "sources" && dataPayload) {
+            try {
+              const parsedSources = JSON.parse(dataPayload);
+              streamedSources = Array.isArray(parsedSources)
+                ? parsedSources.map((s: any, index: number) => ({
+                    id: index + 1,
+                    documentName: s.documentName || `Source ${index + 1}`,
+                    snippet: s.snippet || "Referenced study details.",
+                  }))
+                : [];
+            } catch (parseError) {
+              console.error("Failed to parse sources payload:", parseError);
+            }
+          }
+
+          if (eventName === "token" && dataPayload) {
+            try {
+              const tokenData = JSON.parse(dataPayload);
+              const chunkText = tokenData.text || "";
+              accumulatedText += chunkText;
+
+              setMessages((prev) =>
+                prev.map((msg) =>
+                  msg.id === tempBotMsg.id
+                    ? {
+                        ...msg,
+                        text: accumulatedText,
+                        sources: streamedSources,
+                      }
+                    : msg
+                )
+              );
+            } catch (parseError) {
+              console.error("Failed to parse token payload:", parseError);
+            }
+          }
+        }
+      }
 
       setMessages((prev) =>
         prev.map((msg) =>
-          msg.id === "temp_bot_msg"
+          msg.id === tempBotMsg.id
             ? {
-              id: `bot_${Date.now()}`,
-              sessionId: currentSessionId,
-              sender: "assistant",
-              text: data.response,
-              timestamp: new Date().toISOString(),
-              sources: formattedSources,
-            }
+                ...msg,
+                id: `bot_${Date.now()}`,
+                text: accumulatedText || msg.text,
+                sources: streamedSources,
+              }
             : msg
         )
       );
@@ -359,8 +418,8 @@ export default function GreenTechChat() {
       console.error("API connection error:", error);
       setMessages((prev) =>
         prev.map((msg) =>
-          msg.id === "temp_bot_msg"
-            ? { ...msg, text: "⚠️ Server connectivity failed. Please verify that your Python FastAPI server is active." }
+          msg.id === tempBotMsg.id
+            ? { ...msg, text: "⚠️ Unable to generate a response right now. Please try again in a moment." }
             : msg
         )
       );
@@ -669,7 +728,7 @@ export default function GreenTechChat() {
                   </div>
                 )}
                 <div className="message-bubble">
-                  {msg.id === "temp_bot_msg" && !msg.text ? (
+                  {msg.id.startsWith("temp_bot_msg_") && !msg.text ? (
                     <div className="typing-indicator">
                       <span className="typing-dot"></span>
                       <span className="typing-dot"></span>
@@ -702,7 +761,7 @@ export default function GreenTechChat() {
                     </details>
                   )}
 
-                  {msg.sender === "assistant" && msg.id !== "temp_bot_msg" && (
+                  {msg.sender === "assistant" && !msg.id.startsWith("temp_bot_msg_") && (
                     <div className="message-actions-bar">
                       <button
                         className="message-action-icon-btn"
