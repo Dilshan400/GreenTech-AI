@@ -80,7 +80,7 @@ def generate_ai_response(question: str, context_chunks: List[Dict], history: Lis
             
     # Gemini call
     elif gemini_key:
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={gemini_key}"
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key={gemini_key}"
         headers = {"Content-Type": "application/json"}
         
         payload = {

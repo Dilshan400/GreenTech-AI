@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const apiKey = process.env.GEMINI_API_KEY || "";
-const openAIKey = process.env.OPENAI_API_KEY || "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";
+const apiKey = (process.env.GEMINI_API_KEY || "").trim();
+const openAIKey = (process.env.OPENAI_API_KEY || "").trim();
 let hasLoggedProviderFailure = false;
 
 // Initialize the Gemini API client if the API key is available
@@ -18,7 +18,7 @@ function getMockEmbedding(text: string): number[] {
     hash = (hash << 5) - hash + text.charCodeAt(i);
     hash |= 0; // Convert to 32bit integer
   }
-  
+
   // Seed a simple LCG pseudo-random generator
   let seed = Math.abs(hash) || 1;
   let sumSq = 0;
@@ -29,7 +29,7 @@ function getMockEmbedding(text: string): number[] {
     vector[i] = val;
     sumSq += val * val;
   }
-  
+
   // Normalize to unit length
   const magnitude = Math.sqrt(sumSq);
   for (let i = 0; i < 768; i++) {
@@ -52,7 +52,7 @@ function generateMockResponse(query: string, systemInstruction: string): string 
   }
 
   const hasContext = retrievedContext && !retrievedContext.startsWith("No specific reference");
-  
+
   const normalizedQuery = query.trim().toLowerCase();
   const greetings = new Set([
     "hi",
@@ -73,7 +73,7 @@ function generateMockResponse(query: string, systemInstruction: string): string 
 
   if (hasContext) {
     response += `Using my local database search, I found relevant snippets and formulated this response:\n\n`;
-    
+
     // Parse references from the context string
     const references: { num: number; text: string; source: string }[] = [];
     const refRegex = /\[Reference (\d+)\] Source: (.*?)\n"(.*?)"/g;
@@ -100,7 +100,7 @@ function generateMockResponse(query: string, systemInstruction: string): string 
   } else {
     response += `I could not find a direct match in the indexed documents for "${query}".\n\nTry asking in one of these forms:\n1. "How do EPEAT Gold ratings affect purchase decisions?"\n2. "Where can I recycle e-waste in Sri Lanka?"\n3. "Should I buy refurbished business laptops or new consumer models?"`;
   }
-  
+
   return response;
 }
 
@@ -158,11 +158,11 @@ export async function getEmbedding(text: string): Promise<number[]> {
     // Graceful fallback to mock embedding for offline demonstration
     return getMockEmbedding(text);
   }
-  
+
   try {
-    const model = genAI.getGenerativeModel({ model: "text-embedding-004" });
+    const model = genAI.getGenerativeModel({ model: "gemini-embedding-001" });
     const result = await model.embedContent(text);
-    
+
     if (result && result.embedding && result.embedding.values) {
       return result.embedding.values;
     }
@@ -204,25 +204,10 @@ export async function* generateChatStream(
       return;
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
-      const isProviderQuotaFailure = message.includes("insufficient_quota") || message.includes("429");
-
-      if (isProviderQuotaFailure) {
-        if (!hasLoggedProviderFailure) {
-          console.warn("OpenAI unavailable due to quota/rate limits. Using local response fallback.");
-          hasLoggedProviderFailure = true;
-        }
-      } else {
-        console.error("OpenAI fallback failed, using local response fallback:", error);
-      }
-
-      const fallback = generateMockResponse(latestMessage, systemInstruction);
-      const parts = fallback.split(/(\s+)/);
-      for (const part of parts) {
-        if (!part) continue;
-        yield {
-          text: () => part,
-        };
-      }
+      console.error("OpenAI API error:", message);
+      yield {
+        text: () => `⚠️ **OpenAI API Error**: ${message}\n\nPlease check your OpenAI API key and credit balance at [platform.openai.com](https://platform.openai.com/settings/organization/billing).`,
+      };
       return;
     }
   }
@@ -231,7 +216,7 @@ export async function* generateChatStream(
     // Generate streaming tokens for fallback mode when no provider key is configured
     const mockResponse = generateMockResponse(latestMessage, systemInstruction);
     const words = mockResponse.split(/(\s+)/);
-    
+
     for (const word of words) {
       if (!word) continue;
       // Small artificial typing delay
@@ -245,7 +230,7 @@ export async function* generateChatStream(
 
   try {
     const model = genAI.getGenerativeModel({
-      model: "gemini-1.5-flash",
+      model: "gemini-3.5-flash",
       systemInstruction: systemInstruction,
       generationConfig: {
         temperature: 0.2,
@@ -259,7 +244,7 @@ export async function* generateChatStream(
     });
 
     const result = await chat.sendMessageStream(latestMessage);
-    
+
     for await (const chunk of result.stream) {
       yield chunk;
     }

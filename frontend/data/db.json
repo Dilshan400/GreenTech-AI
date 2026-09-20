@@ -5,7 +5,7 @@
       "userId": "user_h6zjqml9m",
       "title": "hii",
       "createdAt": "2026-08-26T15:30:35.831Z",
-      "updatedAt": "2026-08-26T16:51:01.937Z"
+      "updatedAt": "2026-09-20T07:41:00.853Z"
     },
     {
       "id": "atlzzr4tqgar1wiqzjnsd",
@@ -597,6 +597,201 @@
       "sender": "assistant",
       "text": "I could not find a direct match in the indexed documents for \"hiii\".\n\nTry asking in one of these forms:\n1. \"How do EPEAT Gold ratings affect purchase decisions?\"\n2. \"Where can I recycle e-waste in Sri Lanka?\"\n3. \"Should I buy refurbished business laptops or new consumer models?\"",
       "timestamp": "2026-08-26T16:51:01.937Z",
+      "sources": []
+    },
+    {
+      "id": "uket8qcpmv81widdiuwu7aj",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "Where can I recycle e-waste in Sri Lanka?",
+      "timestamp": "2026-09-20T06:45:46.017Z"
+    },
+    {
+      "id": "avtag0x739i0o8pvztc4f8h",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "I could not find a direct match in the indexed documents for \"Where can I recycle e-waste in Sri Lanka?\".\n\nTry asking in one of these forms:\n1. \"How do EPEAT Gold ratings affect purchase decisions?\"\n2. \"Where can I recycle e-waste in Sri Lanka?\"\n3. \"Should I buy refurbished business laptops or new consumer models?\"",
+      "timestamp": "2026-09-20T06:45:47.822Z",
+      "sources": []
+    },
+    {
+      "id": "w4lfsmoettsrcikvq25wd",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "Where can I recycle e-waste in Sri Lanka?",
+      "timestamp": "2026-09-20T06:49:51.487Z"
+    },
+    {
+      "id": "o6hfbaffjzuoczf8jkvkp",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "I could not find a direct match in the indexed documents for \"Where can I recycle e-waste in Sri Lanka?\".\n\nTry asking in one of these forms:\n1. \"How do EPEAT Gold ratings affect purchase decisions?\"\n2. \"Where can I recycle e-waste in Sri Lanka?\"\n3. \"Should I buy refurbished business laptops or new consumer models?\"",
+      "timestamp": "2026-09-20T06:49:52.932Z",
+      "sources": []
+    },
+    {
+      "id": "olheb6bwa4eybtpxwshs99",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "Where can I recycle e-waste in Sri Lanka?",
+      "timestamp": "2026-09-20T06:52:40.887Z"
+    },
+    {
+      "id": "9qato3cz2anxjmlwcy69ng",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "I could not find a direct match in the indexed documents for \"Where can I recycle e-waste in Sri Lanka?\".\n\nTry asking in one of these forms:\n1. \"How do EPEAT Gold ratings affect purchase decisions?\"\n2. \"Where can I recycle e-waste in Sri Lanka?\"\n3. \"Should I buy refurbished business laptops or new consumer models?\"",
+      "timestamp": "2026-09-20T06:52:41.743Z",
+      "sources": []
+    },
+    {
+      "id": "u72wbb1rrbdc4kf88izd5p",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "Where can I recycle e-waste in Sri Lanka?",
+      "timestamp": "2026-09-20T06:53:57.595Z"
+    },
+    {
+      "id": "ipqx8o05ps5ocsiay7iec",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "I could not find a direct match in the indexed documents for \"Where can I recycle e-waste in Sri Lanka?\".\n\nTry asking in one of these forms:\n1. \"How do EPEAT Gold ratings affect purchase decisions?\"\n2. \"Where can I recycle e-waste in Sri Lanka?\"\n3. \"Should I buy refurbished business laptops or new consumer models?\"",
+      "timestamp": "2026-09-20T06:53:58.445Z",
+      "sources": []
+    },
+    {
+      "id": "z0bla6pz8jhbfhtmhpxwli",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "Where can I recycle e-waste in Sri Lanka?",
+      "timestamp": "2026-09-20T06:54:37.671Z"
+    },
+    {
+      "id": "keo84wza5xkk8oneg6q4n",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "I could not find a direct match in the indexed documents for \"Where can I recycle e-waste in Sri Lanka?\".\n\nTry asking in one of these forms:\n1. \"How do EPEAT Gold ratings affect purchase decisions?\"\n2. \"Where can I recycle e-waste in Sri Lanka?\"\n3. \"Should I buy refurbished business laptops or new consumer models?\"",
+      "timestamp": "2026-09-20T06:54:38.504Z",
+      "sources": []
+    },
+    {
+      "id": "nektwhe3o4lxfmwe2tfei",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "Where can I recycle e-waste in Sri Lanka?",
+      "timestamp": "2026-09-20T07:09:44.133Z"
+    },
+    {
+      "id": "1yklsmy1lt3hc1y4o0jf4op",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "⚠️ **OpenAI API Error**: OpenAI request failed (429): {\n    \"error\": {\n        \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n        \"type\": \"insufficient_quota\",\n        \"param\": null,\n        \"code\": \"credit_balance_exhausted\"\n    }\n}\n\n\nPlease check your OpenAI API key and credit balance at [platform.openai.com](https://platform.openai.com/settings/organization/billing).",
+      "timestamp": "2026-09-20T07:09:45.454Z",
+      "sources": []
+    },
+    {
+      "id": "pq4nqi30wspiu90aq2aq2",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "Hellooo",
+      "timestamp": "2026-09-20T07:12:16.880Z"
+    },
+    {
+      "id": "d8urbes52bqf17s8ze0s9k",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "⚠️ **OpenAI API Error**: OpenAI request failed (429): {\n    \"error\": {\n        \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n        \"type\": \"insufficient_quota\",\n        \"param\": null,\n        \"code\": \"credit_balance_exhausted\"\n    }\n}\n\n\nPlease check your OpenAI API key and credit balance at [platform.openai.com](https://platform.openai.com/settings/organization/billing).",
+      "timestamp": "2026-09-20T07:12:19.388Z",
+      "sources": []
+    },
+    {
+      "id": "uuv15yw5vn9n7fy08lz2ks",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "Hellooo",
+      "timestamp": "2026-09-20T07:14:02.233Z"
+    },
+    {
+      "id": "vrv6cgk6k4ska3s29avo",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "⚠️ **OpenAI API Error**: OpenAI request failed (429): {\n    \"error\": {\n        \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n        \"type\": \"insufficient_quota\",\n        \"param\": null,\n        \"code\": \"credit_balance_exhausted\"\n    }\n}\n\n\nPlease check your OpenAI API key and credit balance at [platform.openai.com](https://platform.openai.com/settings/organization/billing).",
+      "timestamp": "2026-09-20T07:14:03.491Z",
+      "sources": []
+    },
+    {
+      "id": "2o5hsjhjmm6ozn964ktvq",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "Hellooo",
+      "timestamp": "2026-09-20T07:18:31.564Z"
+    },
+    {
+      "id": "dr3h637gttir97fywzrb9a",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "⚠️ **OpenAI API Error**: OpenAI request failed (429): {\n    \"error\": {\n        \"message\": \"You have no credits remaining. Add credits to continue using the API at https://platform.openai.com/settings/organization/billing/.\",\n        \"type\": \"insufficient_quota\",\n        \"param\": null,\n        \"code\": \"credit_balance_exhausted\"\n    }\n}\n\n\nPlease check your OpenAI API key and credit balance at [platform.openai.com](https://platform.openai.com/settings/organization/billing).",
+      "timestamp": "2026-09-20T07:18:34.523Z",
+      "sources": []
+    },
+    {
+      "id": "evh12nqs5x7xyt49xm1rx",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "Helloo",
+      "timestamp": "2026-09-20T07:29:04.731Z"
+    },
+    {
+      "id": "4wn7hdvvsjszf3i13tm0br",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "Sorry, I encountered an issue generating a response. Please check the backend logs.",
+      "timestamp": "2026-09-20T07:29:09.451Z",
+      "sources": []
+    },
+    {
+      "id": "4exsvp77h8bdrf12irp23v",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "Helloo",
+      "timestamp": "2026-09-20T07:37:49.852Z"
+    },
+    {
+      "id": "rormjr95tbmjm8okhsr3oj",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "Sorry, I encountered an issue generating a response. Please check the backend logs.",
+      "timestamp": "2026-09-20T07:38:11.949Z",
+      "sources": []
+    },
+    {
+      "id": "3mlqdhrho9cip9w5usohdl",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "Hello, what are good eco-friendly laptops?",
+      "timestamp": "2026-09-20T07:38:29.926Z"
+    },
+    {
+      "id": "ypxny74berpyoy3q44qtsb",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "Hello! As your GreenTech Advisor AI, I am here to help you make environmentally responsible decisions when it comes to your IT hardware. \n\nPlease note that I do not have specific literature documents or database files to cite regarding exact laptop models or local Sri Lankan market availability. However, I can share general, scientifically backed environmental best practices to help you choose an eco-friendly laptop.\n\nWhen looking for a sustainable laptop—especially as an IT student who may need a high-performing yet durable machine—you should evaluate devices based on the following green criteria:\n\n### 1. Eco-Certifications\nLook for globally recognized environmental standards on the product's specification sheet:\n*   **EPEAT (Electronic Product Environmental Assessment Tool):** Aim for devices with an **EPEAT Gold** rating. This certification assesses a product's lifecycle, from energy use and materials to packaging and end-of-life recycling.\n*   **ENERGY STAR:** Ensures the laptop meets strict energy efficiency guidelines set by the EPA, reducing electricity consumption during your long coding or study sessions.\n*   **TCO Certified:** Focuses on social responsibility during manufacturing, hazardous material reduction, and circular economy design.\n\n### 2. Modular Design and Repairability\nAs an IT student, you likely have the technical aptitude to maintain your own device. Choosing a laptop designed for longevity is one of the most effective ways to reduce e-waste:\n*   **Upgradability:** Opt for laptops that allow you to easily upgrade the RAM and storage (SSD) rather than those with components soldered to the motherboard.\n*   **Repairability:** Look for brands that provide public repair manuals, sell spare parts directly to consumers, and have high repairability scores (such as those rated by iFixit). Modular laptops (where parts like the keyboard, screen, and ports can be individually replaced) are excellent choices.\n\n### 3. Sustainable Materials\nMany manufacturers are now incorporating circular economy principles into their hardware:\n*   **Recycled Content:** Look for chassis made from recycled aluminum or post-consumer recycled (PCR) plastics.\n*   **Ocean-Bound Plastics:** Some brands use plastics recovered from coastal areas in their speakers, fan housings, or packaging.\n*   **Eco-friendly Packaging:** Prefer laptops shipped in 100% recyclable, fiber-based packaging rather than single-use plastics and styrofoam.\n\n### 4. Manufacturer Take-Back and Recycling Programs\nBefore purchasing, check the manufacturer's e-waste policy. Responsible brands offer free take-back or trade-in programs to ensure that when your laptop finally reaches the end of its functional life, its components are recycled safely and do not end up in a landfill.\n\n**A Tip for IT Undergraduates in Sri Lanka:** \nBefore buying brand new, consider whether a high-quality, refurbished enterprise-grade laptop (like a refurbished business-class notebook) could meet your programming and coursework needs. Extending the lifespan of existing hardware is always the most eco-friendly choice!",
+      "timestamp": "2026-09-20T07:38:51.810Z",
+      "sources": []
+    },
+    {
+      "id": "x3e12l157ovbzfrc13zzq",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "user",
+      "text": "Hellooo",
+      "timestamp": "2026-09-20T07:40:53.081Z"
+    },
+    {
+      "id": "4fdcl944fueyuz4ocetxr",
+      "sessionId": "95izqx8j39gcrqb5y6o7nb",
+      "sender": "assistant",
+      "text": "Hello! I am your GreenTech Advisor AI. \n\nHow can I help you today with making environmentally responsible electronic purchasing decisions or managing e-waste? Whether you are looking for tips on extending the lifespan of your current devices, understanding eco-labels, or finding proper e-waste disposal methods in Sri Lanka, feel free to ask!",
+      "timestamp": "2026-09-20T07:41:00.853Z",
       "sources": []
     }
   ]
