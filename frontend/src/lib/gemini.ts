@@ -1,8 +1,6 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const apiKey = process.env.GEMINI_API_KEY || "";
-const openAIKey = process.env.OPENAI_API_KEY || "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";
-let hasLoggedProviderFailure = false;
 
 // Initialize the Gemini API client if the API key is available
 export const genAI = apiKey ? new GoogleGenerativeAI(apiKey) : null;
@@ -53,23 +51,7 @@ function generateMockResponse(query: string, systemInstruction: string): string 
 
   const hasContext = retrievedContext && !retrievedContext.startsWith("No specific reference");
   
-  const normalizedQuery = query.trim().toLowerCase();
-  const greetings = new Set([
-    "hi",
-    "hello",
-    "hey",
-    "hello there",
-    "hi there",
-    "good morning",
-    "good afternoon",
-    "good evening",
-  ]);
-
-  if (greetings.has(normalizedQuery)) {
-    return "Hello! I am GreenTech Advisor AI. Ask me about sustainable electronics, green buying choices, device longevity, or e-waste handling in Sri Lanka.";
-  }
-
-  let response = "";
+  let response = `👋 **[GreenTech Offline Demo Mode]**\n\nI am running in local offline demo mode because the \`GEMINI_API_KEY\` environment variable is not configured. However, my RAG search index is active and working!\n\n`;
 
   if (hasContext) {
     response += `Using my local database search, I found relevant snippets and formulated this response:\n\n`;
@@ -93,60 +75,15 @@ function generateMockResponse(query: string, systemInstruction: string): string 
         const cleanText = ref.text.length > 150 ? ref.text.substring(0, 147) + "..." : ref.text;
         response += `* **From ${ref.source}**: "${cleanText}" [${ref.num}]\n`;
       });
-      response += "\nIf you share your budget and priorities, I can also compare practical options for your use case.";
+      response += `\nFor production use, add your \`GEMINI_API_KEY\` to a \`.env\` file and rerun \`npm run ingest\` to unlock natural language responses powered by Gemini 1.5 Flash.`;
     } else {
       response += `I found matching text chunks, but was unable to segment them. Here is the raw retrieved context:\n\n${retrievedContext.substring(0, 300)}...`;
     }
   } else {
-    response += `I could not find a direct match in the indexed documents for "${query}".\n\nTry asking in one of these forms:\n1. "How do EPEAT Gold ratings affect purchase decisions?"\n2. "Where can I recycle e-waste in Sri Lanka?"\n3. "Should I buy refurbished business laptops or new consumer models?"`;
+    response += `No matching document chunks were retrieved for the query: *"${query}"*.\n\nTry asking questions about topics represented in the sample documents, such as:\n1. **"EPEAT Gold ratings"**\n2. **"recycle e-waste in Sri Lanka"**\n3. **"refurbished business laptops vs new consumer models"**`;
   }
   
   return response;
-}
-
-async function generateOpenAIResponse(
-  systemInstruction: string,
-  history: ChatMessage[],
-  latestMessage: string
-): Promise<string> {
-  const messages: Array<{ role: "system" | "user" | "assistant"; content: string }> = [
-    { role: "system", content: systemInstruction },
-  ];
-
-  for (const msg of history) {
-    messages.push({
-      role: msg.role === "user" ? "user" : "assistant",
-      content: msg.parts.map((part) => part.text).join("\n"),
-    });
-  }
-
-  messages.push({ role: "user", content: latestMessage });
-
-  const response = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${openAIKey}`,
-    },
-    body: JSON.stringify({
-      model: "gpt-4o-mini",
-      temperature: 0.2,
-      messages,
-    }),
-  });
-
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`OpenAI request failed (${response.status}): ${errorText}`);
-  }
-
-  const data = await response.json();
-  const text = data?.choices?.[0]?.message?.content;
-  if (!text || typeof text !== "string") {
-    throw new Error("OpenAI response was missing text content.");
-  }
-
-  return text;
 }
 
 /**
@@ -190,54 +127,16 @@ export async function* generateChatStream(
   history: ChatMessage[],
   latestMessage: string
 ) {
-  if (!genAI && openAIKey) {
-    try {
-      const openAIResponse = await generateOpenAIResponse(systemInstruction, history, latestMessage);
-      const chunks = openAIResponse.split(/(\s+)/);
-
-      for (const chunk of chunks) {
-        if (!chunk) continue;
-        yield {
-          text: () => chunk,
-        };
-      }
-      return;
-    } catch (error) {
-      const message = error instanceof Error ? error.message : String(error);
-      const isProviderQuotaFailure = message.includes("insufficient_quota") || message.includes("429");
-
-      if (isProviderQuotaFailure) {
-        if (!hasLoggedProviderFailure) {
-          console.warn("OpenAI unavailable due to quota/rate limits. Using local response fallback.");
-          hasLoggedProviderFailure = true;
-        }
-      } else {
-        console.error("OpenAI fallback failed, using local response fallback:", error);
-      }
-
-      const fallback = generateMockResponse(latestMessage, systemInstruction);
-      const parts = fallback.split(/(\s+)/);
-      for (const part of parts) {
-        if (!part) continue;
-        yield {
-          text: () => part,
-        };
-      }
-      return;
-    }
-  }
-
   if (!genAI) {
-    // Generate streaming tokens for fallback mode when no provider key is configured
+    // Generate streaming tokens for mock response in offline mode
     const mockResponse = generateMockResponse(latestMessage, systemInstruction);
-    const words = mockResponse.split(/(\s+)/);
+    const words = mockResponse.split(" ");
     
     for (const word of words) {
-      if (!word) continue;
       // Small artificial typing delay
       await new Promise((resolve) => setTimeout(resolve, 30));
       yield {
-        text: () => word,
+        text: () => word + " ",
       };
     }
     return;
