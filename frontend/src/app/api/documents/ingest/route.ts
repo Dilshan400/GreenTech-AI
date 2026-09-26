@@ -5,8 +5,77 @@ import { getEmbedding } from "@/lib/gemini";
 
 export const dynamic = "force-dynamic";
 
-const KNOWLEDGE_BASE_DIR = path.join(process.cwd(), "knowledge_base");
+function getKnowledgeBaseDir(): string {
+  const localDir = path.join(process.cwd(), "knowledge_base");
+  if (fs.existsSync(localDir)) {
+    return localDir;
+  }
+  const backendDir = path.join(process.cwd(), "..", "backend", "knowledge_base");
+  if (fs.existsSync(backendDir)) {
+    return backendDir;
+  }
+  return localDir;
+}
+
+const KNOWLEDGE_BASE_DIR = getKnowledgeBaseDir();
 const OUTPUT_FILE = path.join(process.cwd(), "data", "knowledge.json");
+
+interface FileEntry {
+  fullPath: string;
+  relativePath: string;
+  name: string;
+  folder: string;
+}
+
+async function getFilesRecursively(dir: string, baseDir: string = dir): Promise<FileEntry[]> {
+  if (!fs.existsSync(dir)) return [];
+  const entries = await fs.promises.readdir(dir, { withFileTypes: true });
+  const files: FileEntry[] = [];
+
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      const subFiles = await getFilesRecursively(fullPath, baseDir);
+      files.push(...subFiles);
+    } else if (entry.isFile() && (entry.name.endsWith(".txt") || entry.name.endsWith(".md"))) {
+      const relativePath = path.relative(baseDir, fullPath).replace(/\\/g, "/");
+      const folder = path.dirname(relativePath).replace(/\\/g, "/");
+      files.push({
+        fullPath,
+        relativePath,
+        name: entry.name,
+        folder: folder === "." ? "" : folder,
+      });
+    }
+  }
+
+  return files;
+}
+
+function getCategory(folder: string, fileName: string): string {
+  const lowerFolder = folder.toLowerCase();
+  const lowerName = fileName.toLowerCase();
+
+  if (lowerFolder.includes("e_waste") || lowerName.includes("ewaste") || lowerName.includes("recycling")) {
+    return "E-Waste & Recycling";
+  }
+  if (lowerFolder.includes("electronic_devices") || lowerName.includes("device") || lowerName.includes("laptop") || lowerName.includes("smartphone")) {
+    return "Sustainable Devices";
+  }
+  if (lowerFolder.includes("green_electronics")) {
+    return "Green Electronics";
+  }
+  if (lowerFolder.includes("green_purchase") || lowerFolder.includes("purchase")) {
+    return "Purchase Intention";
+  }
+  if (lowerFolder.includes("conversation") || lowerFolder.includes("dialogue")) {
+    return "Consultation Dialogues";
+  }
+  if (lowerFolder.includes("research") || lowerName.includes("research") || lowerName.includes("survey") || lowerName.includes("tpb")) {
+    return "Academic Research";
+  }
+  return "General Knowledge";
+}
 
 // Helper to chunk text
 function chunkText(text: string, maxChars: number = 800, overlap: number = 150): string[] {
@@ -60,8 +129,7 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    const files = await fs.promises.readdir(KNOWLEDGE_BASE_DIR);
-    const targetFiles = files.filter((f) => f.endsWith(".txt") || f.endsWith(".md"));
+    const targetFiles = await getFilesRecursively(KNOWLEDGE_BASE_DIR);
 
     if (targetFiles.length === 0) {
       return new Response(JSON.stringify({ success: true, message: "No text or markdown files found.", chunkCount: 0 }), {
@@ -73,62 +141,47 @@ export async function POST(req: NextRequest) {
     const allChunks: any[] = [];
     const isMockMode = !process.env.GEMINI_API_KEY;
 
-    for (const fileName of targetFiles) {
-      const filePath = path.join(KNOWLEDGE_BASE_DIR, fileName);
-      const content = await fs.promises.readFile(filePath, "utf-8");
-      
-      let category = "General";
-      if (fileName.toLowerCase().includes("ewaste") || fileName.toLowerCase().includes("recycling")) {
-        category = "E-Waste & Recycling";
-      } else if (fileName.toLowerCase().includes("research") || fileName.toLowerCase().includes("survey")) {
-        category = "Academic Research";
-      } else if (fileName.toLowerCase().includes("sustainable") || fileName.toLowerCase().includes("laptops")) {
-        category = "Sustainable Devices";
-      }
-
+    for (const fileItem of targetFiles) {
+      const content = await fs.promises.readFile(fileItem.fullPath, "utf-8");
+      const category = getCategory(fileItem.folder, fileItem.name);
       const textChunks = chunkText(content);
       
       for (let i = 0; i < textChunks.length; i++) {
         const text = textChunks[i];
         
         try {
-          // getEmbedding handles mock/live logic seamlessly
           const embedding = await getEmbedding(text);
           const headerMatch = text.match(/^#+\s+(.+)$/m);
           const sectionHeader = headerMatch ? headerMatch[1] : undefined;
 
           allChunks.push({
-            id: `${fileName}-chunk-${i}`,
+            id: `${fileItem.name}-chunk-${i}`,
             text,
             embedding,
             metadata: {
-              documentName: fileName,
+              documentName: fileItem.relativePath,
               category,
               sectionHeader,
             },
           });
           
-          // Delay briefly to avoid hitting standard API limits in loop
           if (!isMockMode) {
             await new Promise((resolve) => setTimeout(resolve, 300));
           }
         } catch (embeddingError) {
-          console.error(`Error embedding chunk ${i} of ${fileName}:`, embeddingError);
-          // Return failure only if live indexing fails critically, ignore mock flaws
+          console.error(`Error embedding chunk ${i} of ${fileItem.relativePath}:`, embeddingError);
           if (!isMockMode) {
-            throw new Error(`Embedding generation failed for ${fileName} chunk ${i}: ${embeddingError}`);
+            throw new Error(`Embedding generation failed for ${fileItem.relativePath} chunk ${i}: ${embeddingError}`);
           }
         }
       }
     }
 
-    // Ensure output directories exist
     const outputDir = path.dirname(OUTPUT_FILE);
     if (!fs.existsSync(outputDir)) {
       fs.mkdirSync(outputDir, { recursive: true });
     }
 
-    // Save vector store index
     await fs.promises.writeFile(OUTPUT_FILE, JSON.stringify({ chunks: allChunks }, null, 2), "utf-8");
     console.log(`Dynamic Ingestion Complete. Indexed ${allChunks.length} chunks.`);
 

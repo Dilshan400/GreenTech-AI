@@ -3,13 +3,82 @@ import fs from "fs";
 import path from "path";
 import { retrieveContext } from "@/lib/rag";
 
-const KNOWLEDGE_BASE_DIR = path.join(process.cwd(), "knowledge_base");
+function getKnowledgeBaseDir(): string {
+  const localDir = path.join(process.cwd(), "knowledge_base");
+  if (fs.existsSync(localDir)) {
+    return localDir;
+  }
+  const backendDir = path.join(process.cwd(), "..", "backend", "knowledge_base");
+  if (fs.existsSync(backendDir)) {
+    return backendDir;
+  }
+  return localDir;
+}
+
+const KNOWLEDGE_BASE_DIR = getKnowledgeBaseDir();
 
 // Ensure the directory exists
 function ensureDirExists() {
   if (!fs.existsSync(KNOWLEDGE_BASE_DIR)) {
     fs.mkdirSync(KNOWLEDGE_BASE_DIR, { recursive: true });
   }
+}
+
+interface FileEntry {
+  fullPath: string;
+  relativePath: string;
+  name: string;
+  folder: string;
+}
+
+async function getFilesRecursively(dir: string, baseDir: string = dir): Promise<FileEntry[]> {
+  if (!fs.existsSync(dir)) return [];
+  const entries = await fs.promises.readdir(dir, { withFileTypes: true });
+  const files: FileEntry[] = [];
+
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      const subFiles = await getFilesRecursively(fullPath, baseDir);
+      files.push(...subFiles);
+    } else if (entry.isFile() && (entry.name.endsWith(".txt") || entry.name.endsWith(".md"))) {
+      const relativePath = path.relative(baseDir, fullPath).replace(/\\/g, "/");
+      const folder = path.dirname(relativePath).replace(/\\/g, "/");
+      files.push({
+        fullPath,
+        relativePath,
+        name: entry.name,
+        folder: folder === "." ? "" : folder,
+      });
+    }
+  }
+
+  return files;
+}
+
+function getCategory(folder: string, fileName: string): string {
+  const lowerFolder = folder.toLowerCase();
+  const lowerName = fileName.toLowerCase();
+
+  if (lowerFolder.includes("e_waste") || lowerName.includes("ewaste") || lowerName.includes("recycling")) {
+    return "E-Waste & Recycling";
+  }
+  if (lowerFolder.includes("electronic_devices") || lowerName.includes("device") || lowerName.includes("laptop") || lowerName.includes("smartphone")) {
+    return "Sustainable Devices";
+  }
+  if (lowerFolder.includes("green_electronics")) {
+    return "Green Electronics";
+  }
+  if (lowerFolder.includes("green_purchase") || lowerFolder.includes("purchase")) {
+    return "Purchase Intention";
+  }
+  if (lowerFolder.includes("conversation") || lowerFolder.includes("dialogue")) {
+    return "Consultation Dialogues";
+  }
+  if (lowerFolder.includes("research") || lowerName.includes("research") || lowerName.includes("survey") || lowerName.includes("tpb")) {
+    return "Academic Research";
+  }
+  return "General Knowledge";
 }
 
 export async function GET(req: NextRequest) {
@@ -30,48 +99,47 @@ export async function GET(req: NextRequest) {
 
     // 2. If a specific document name is provided, return its raw file content
     if (docName) {
-      // Security check: prevent directory traversal
-      const safeName = path.basename(docName);
-      const filePath = path.join(KNOWLEDGE_BASE_DIR, safeName);
-      if (!fs.existsSync(filePath)) {
+      const allFiles = await getFilesRecursively(KNOWLEDGE_BASE_DIR);
+      const cleanDocName = docName.replace(/\\/g, "/");
+      const matched = allFiles.find(
+        (f) =>
+          f.relativePath === cleanDocName ||
+          f.name === cleanDocName ||
+          f.relativePath.endsWith("/" + cleanDocName)
+      );
+
+      if (!matched) {
         return new Response(JSON.stringify({ error: "Document not found" }), {
           status: 404,
           headers: { "Content-Type": "application/json" },
         });
       }
-      const content = await fs.promises.readFile(filePath, "utf-8");
+
+      const content = await fs.promises.readFile(matched.fullPath, "utf-8");
       return new Response(JSON.stringify({ content }), {
         status: 200,
         headers: { "Content-Type": "application/json" },
       });
     }
 
-    // 3. Otherwise, return the list of files in the knowledge base
-    const files = await fs.promises.readdir(KNOWLEDGE_BASE_DIR);
-    const textFiles = files.filter((f) => f.endsWith(".txt") || f.endsWith(".md"));
+    // 3. Otherwise, return the list of files in the knowledge base (recursively)
+    const allFiles = await getFilesRecursively(KNOWLEDGE_BASE_DIR);
 
     const documentList = await Promise.all(
-      textFiles.map(async (fileName) => {
-        const filePath = path.join(KNOWLEDGE_BASE_DIR, fileName);
-        const stats = await fs.promises.stat(filePath);
-        
-        let category = "General";
-        if (fileName.toLowerCase().includes("ewaste") || fileName.toLowerCase().includes("recycling")) {
-          category = "E-Waste & Recycling";
-        } else if (fileName.toLowerCase().includes("research") || fileName.toLowerCase().includes("survey")) {
-          category = "Academic Research";
-        } else if (fileName.toLowerCase().includes("sustainable") || fileName.toLowerCase().includes("laptops")) {
-          category = "Sustainable Devices";
-        }
+      allFiles.map(async (fileItem) => {
+        const stats = await fs.promises.stat(fileItem.fullPath);
+        const category = getCategory(fileItem.folder, fileItem.name);
 
         return {
-          name: fileName,
+          name: fileItem.relativePath,
           sizeBytes: stats.size,
           lastModified: stats.mtime.toISOString(),
           category,
         };
       })
     );
+
+    documentList.sort((a, b) => a.category.localeCompare(b.category) || a.name.localeCompare(b.name));
 
     return new Response(JSON.stringify(documentList), {
       status: 200,
@@ -99,7 +167,6 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    // Restrict files to text and markdown for security/parsing compatibility
     if (!file.name.endsWith(".txt") && !file.name.endsWith(".md")) {
       return new Response(
         JSON.stringify({ error: "Invalid file type. Only .txt and .md files are supported." }),
@@ -107,7 +174,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Save file
     const safeName = path.basename(file.name);
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
@@ -142,18 +208,24 @@ export async function DELETE(req: NextRequest) {
       });
     }
 
-    const safeName = path.basename(fileName);
-    const filePath = path.join(KNOWLEDGE_BASE_DIR, safeName);
+    const allFiles = await getFilesRecursively(KNOWLEDGE_BASE_DIR);
+    const cleanName = fileName.replace(/\\/g, "/");
+    const matched = allFiles.find(
+      (f) =>
+        f.relativePath === cleanName ||
+        f.name === cleanName ||
+        f.relativePath.endsWith("/" + cleanName)
+    );
 
-    if (!fs.existsSync(filePath)) {
+    if (!matched) {
       return new Response(JSON.stringify({ error: "File not found" }), {
         status: 404,
         headers: { "Content-Type": "application/json" },
       });
     }
 
-    await fs.promises.unlink(filePath);
-    console.log(`Deleted document: ${safeName}`);
+    await fs.promises.unlink(matched.fullPath);
+    console.log(`Deleted document: ${matched.relativePath}`);
 
     return new Response(JSON.stringify({ success: true }), {
       status: 200,

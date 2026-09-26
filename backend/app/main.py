@@ -12,6 +12,7 @@ from app.models.user import User
 from app.models.conversation import Conversation
 from app.models.message import Message
 from app.models.document import KnowledgeDocument
+from app.models.faq import FAQConversation
 
 from app.routes.health import router as health_router
 from app.routes.auth import router as auth_router
