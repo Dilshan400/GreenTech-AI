@@ -11,8 +11,6 @@ import {
   X,
   Moon,
   Sun,
-  ThumbsUp,
-  ThumbsDown,
   Copy,
   BookOpen,
   Cpu,
@@ -580,6 +578,7 @@ export default function GreenTechChat() {
             <a href="/" style={{ color: "var(--text-sub)", fontSize: "0.85rem", textDecoration: "none", fontWeight: 600, display: "flex", alignItems: "center", gap: "4px" }} className="nav-link">
               <Home size={14} /> Home
             </a>
+            {/*
             <a href="/explorer" style={{ color: "var(--text-sub)", fontSize: "0.85rem", textDecoration: "none", fontWeight: 600, display: "flex", alignItems: "center", gap: "4px" }} className="nav-link">
               <BookOpen size={14} /> Explorer
             </a>
@@ -589,6 +588,7 @@ export default function GreenTechChat() {
             <a href="/admin" style={{ color: "var(--text-sub)", fontSize: "0.85rem", textDecoration: "none", fontWeight: 600, display: "flex", alignItems: "center", gap: "4px" }} className="nav-link">
               <Shield size={14} /> Admin
             </a>
+            */}
           </nav>
 
           <div className="header-right">
@@ -715,24 +715,6 @@ export default function GreenTechChat() {
                           <Copy size={14} />
                         )}
                       </button>
-
-                      <button
-                        className={`message-action-icon-btn ${msg.feedback?.rating === "like" ? "liked" : ""}`}
-                        title="Thumb Up (Helpful)"
-                        onClick={() => handleRateMessage(msg.id, "like")}
-                        disabled={!!msg.feedback}
-                      >
-                        <ThumbsUp size={14} fill={msg.feedback?.rating === "like" ? "currentColor" : "none"} />
-                      </button>
-
-                      <button
-                        className={`message-action-icon-btn ${msg.feedback?.rating === "dislike" ? "disliked" : ""}`}
-                        title="Thumb Down (Unhelpful/Incorrect)"
-                        onClick={() => handleRateMessage(msg.id, "dislike")}
-                        disabled={!!msg.feedback}
-                      >
-                        <ThumbsDown size={14} fill={msg.feedback?.rating === "dislike" ? "currentColor" : "none"} />
-                      </button>
                     </div>
                   )}
                 </div>
@@ -782,9 +764,11 @@ export default function GreenTechChat() {
               <Send size={16} />
             </button>
           </div>
+          {/*
           <div className="chat-input-disclaimer">
             GreenTech Advisor AI can assist in evaluating hardware, carbon footprints, and e-waste locations.
           </div>
+          */}
         </div>
       </main>
     </div>

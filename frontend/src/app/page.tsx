@@ -69,11 +69,9 @@ export default function LandingPage() {
         </div>
 
         <div style={{ maxWidth: "800px", margin: "auto", position: "relative", zIndex: 1 }}>
-          <span style={{ fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.15em", color: "var(--primary)", fontWeight: 700, backgroundColor: "var(--primary-glow)", padding: "6px 14px", borderRadius: "20px" }}>
-            RAG-Powered AI Platform
-          </span>
           <h1 style={{ fontSize: "2.8rem", fontWeight: 850, marginTop: "20px", marginBottom: "20px", lineHeight: "1.2", letterSpacing: "-0.02em" }}>
-            Evaluating Sustainable Electronic Purchases
+            Assessing the Impact of Green Purchase Intention
+            among IT Undergraduates
           </h1>
           <p style={{ fontSize: "1.1rem", color: "var(--text-sub)", lineHeight: "1.6", marginBottom: "36px", maxWidth: "680px", margin: "auto" }}>
           </p>
@@ -81,28 +79,24 @@ export default function LandingPage() {
             <a href="/chat" className="btn-primary" style={{ padding: "12px 24px", fontSize: "0.95rem", textDecoration: "none", display: "flex", alignItems: "center", gap: "8px", borderRadius: "10px" }}>
               Launch Chat Advisor <MessageSquare size={16} />
             </a>
-            <a href="/explorer" className="btn-secondary" style={{ padding: "12px 24px", fontSize: "0.95rem", textDecoration: "none", display: "flex", alignItems: "center", gap: "8px", borderRadius: "10px" }}>
-              Explore Documents <BookOpen size={16} />
-            </a>
+
           </div>
         </div>
       </section>
 
       {/* 3. Research Banner Section */}
       <section style={{ padding: "0 24px 60px 24px" }}>
-        <div style={{ maxWidth: "880px", margin: "auto", backgroundColor: "var(--accent-green)", color: "var(--accent-green-text)", padding: "28px", borderRadius: "18px", borderLeft: "6px solid var(--primary)", boxShadow: "var(--shadow-md)" }}>
-          <h3 style={{ fontSize: "1.1rem", fontWeight: 700, marginBottom: "8px" }}></h3>
-          <p style={{ fontSize: "0.9rem", lineHeight: "1.5" }}>
-
-            <br />
-            <em style={{ fontWeight: 600 }}>"Assessing the Impact of Green Purchase Intention</em>
-            <br /><br />
-            Unlike survey-collection chatbots, this AI is a retrieval-oriented knowledge advisor. It helps users browse literature context, evaluate hardware lifecycle data, and find disposal locations.
+        <div style={{ maxWidth: "880px", margin: "auto", backgroundColor: "var(--accent-green)", color: "var(--accent-green-text)", padding: "28px 32px", borderRadius: "18px", borderLeft: "6px solid var(--primary)", boxShadow: "var(--shadow-md)" }}>
+          <h3 style={{ fontSize: "1.35rem", fontWeight: 700, fontStyle: "italic", marginBottom: "10px" }}>
+            "Your AI Guide to Sustainable Electronics"
+          </h3>
+          <p style={{ fontSize: "1.1rem", lineHeight: "1.6" }}>
+            Explore green purchasing choices, understand environmental impacts, and make informed decisions about electronic devices
           </p>
         </div>
       </section>
 
-      {/* 4. Feature Navigation Grid */}
+      {/* 4. Feature Navigation Grid (Commented out)
       <section style={{ padding: "40px 24px 80px 24px", backgroundColor: "var(--bg-panel)", borderTop: "1px solid var(--border-light)", borderBottom: "1px solid var(--border-light)" }}>
         <div style={{ maxWidth: "1000px", margin: "auto" }}>
           <h2 style={{ fontSize: "1.8rem", fontWeight: 800, textAlign: "center", marginBottom: "40px" }}>Explore Platform Modules</h2>
@@ -162,8 +156,9 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+      */}
 
-      {/* 5. Theory Section */}
+      {/* 5. Theory Section (Commented out)
       <section style={{ padding: "80px 24px" }}>
         <div style={{ maxWidth: "1000px", margin: "auto" }}>
           <h2 style={{ fontSize: "1.8rem", fontWeight: 800, textAlign: "center", marginBottom: "16px" }}>The Undergraduates Study Framework</h2>
@@ -214,6 +209,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+      */}
 
       {/* 6. Footer */}
       <footer style={{ marginTop: "auto", padding: "30px 24px", backgroundColor: "var(--bg-panel)", borderTop: "1px solid var(--border-light)", textAlign: "center", fontSize: "0.8rem", color: "var(--text-muted)" }}>
