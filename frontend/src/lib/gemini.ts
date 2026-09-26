@@ -1,6 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const apiKey = process.env.GEMINI_API_KEY || "";
+const rawApiKey = process.env.GEMINI_API_KEY || "";
+const apiKey = rawApiKey.trim().replace(/^["']|["']$/g, "");
 
 // Initialize the Gemini API client if the API key is available
 export const genAI = apiKey ? new GoogleGenerativeAI(apiKey) : null;
