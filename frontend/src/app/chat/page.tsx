@@ -47,7 +47,7 @@ interface Session {
   updatedAt: string;
 }
 
-const BACKEND_URL = "http://localhost:8000";
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
 
 export default function GreenTechChat() {
   const [userId, setUserId] = useState<string>("");
