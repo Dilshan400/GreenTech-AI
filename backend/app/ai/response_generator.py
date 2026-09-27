@@ -78,8 +78,8 @@ def generate_ai_response(question: str, context_chunks: List[Dict], history: Lis
         except Exception as e:
             print(f"Failed to connect to OpenAI API: {e}")
             
-    # Gemini call
-    elif gemini_key:
+    # Gemini call (used directly or as fallback if OpenAI fails)
+    if gemini_key:
         clean_key = gemini_key.strip().strip('"\'')
         url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={clean_key}"
         headers = {
