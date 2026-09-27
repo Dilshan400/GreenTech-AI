@@ -81,27 +81,28 @@ def generate_ai_response(question: str, context_chunks: List[Dict], history: Lis
     # Gemini call (used directly or as fallback if OpenAI fails)
     if gemini_key:
         clean_key = gemini_key.strip().strip('"\'')
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={clean_key}"
         headers = {
             "Content-Type": "application/json",
             "x-goog-api-key": clean_key
         }
-        
         payload = {
             "contents": [{"parts": [{"text": prompt}]}],
             "systemInstruction": {"parts": [{"text": SYSTEM_INSTRUCTION}]}
         }
         
-        try:
-            response = httpx.post(url, json=payload, headers=headers, timeout=25.0)
-            if response.status_code == 200:
-                data = response.json()
-                text = data["candidates"][0]["content"]["parts"][0]["text"]
-                return text
-            else:
-                print(f"Gemini API error {response.status_code}: {response.text}")
-        except Exception as e:
-            print(f"Failed to connect to Gemini API: {e}")
+        models_to_try = ["gemini-flash-latest", "gemini-3.8-flash", "gemini-flash-lite-latest"]
+        for model_name in models_to_try:
+            url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={clean_key}"
+            try:
+                response = httpx.post(url, json=payload, headers=headers, timeout=25.0)
+                if response.status_code == 200:
+                    data = response.json()
+                    text = data["candidates"][0]["content"]["parts"][0]["text"]
+                    return text
+                else:
+                    print(f"Gemini ({model_name}) error {response.status_code}: {response.text}")
+            except Exception as e:
+                print(f"Failed to connect to Gemini API ({model_name}): {e}")
             
     # Local fallback
     return synthesize_local_response(question, context_chunks, history)

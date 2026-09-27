@@ -143,28 +143,37 @@ export async function* generateChatStream(
     return;
   }
 
-  try {
-    const model = genAI.getGenerativeModel({
-      model: "gemini-1.5-flash",
-      systemInstruction: systemInstruction,
-      generationConfig: {
-        temperature: 0.2,
-        topP: 0.95,
-        maxOutputTokens: 2048,
+  const models = ["gemini-flash-latest", "gemini-3.8-flash", "gemini-flash-lite-latest"];
+  let lastError: any = null;
+
+  for (const modelName of models) {
+    try {
+      const model = genAI.getGenerativeModel({
+        model: modelName,
+        systemInstruction: systemInstruction,
+        generationConfig: {
+          temperature: 0.2,
+          topP: 0.95,
+          maxOutputTokens: 2048,
+        }
+      });
+
+      const chat = model.startChat({
+        history: history,
+      });
+
+      const result = await chat.sendMessageStream(latestMessage);
+      
+      for await (const chunk of result.stream) {
+        yield chunk;
       }
-    });
-
-    const chat = model.startChat({
-      history: history,
-    });
-
-    const result = await chat.sendMessageStream(latestMessage);
-    
-    for await (const chunk of result.stream) {
-      yield chunk;
+      return;
+    } catch (error) {
+      console.warn(`Failed with model ${modelName}:`, error);
+      lastError = error;
     }
-  } catch (error) {
-    console.error("Error generating chat stream:", error);
-    throw error;
   }
+
+  console.error("All Gemini models failed in generateChatStream:", lastError);
+  throw lastError;
 }
