@@ -20,8 +20,10 @@ SYSTEM_INSTRUCTION = (
 
 def generate_ai_response(question: str, context_chunks: List[Dict], history: List[Dict]) -> str:
     """Generates responses using OpenAI or Gemini, with fallback to local synthesis."""
-    openai_key = settings.OPENAI_API_KEY or os.getenv("OPENAI_API_KEY")
-    gemini_key = settings.GEMINI_API_KEY or os.getenv("GEMINI_API_KEY")
+    raw_openai = settings.OPENAI_API_KEY or os.getenv("OPENAI_API_KEY") or ""
+    openai_key = raw_openai.strip().strip('"\'')
+    raw_gemini = settings.GEMINI_API_KEY or os.getenv("GEMINI_API_KEY") or ""
+    gemini_key = raw_gemini.strip().strip('"\'')
     
     # Format context
     context_str = ""
@@ -43,9 +45,14 @@ def generate_ai_response(question: str, context_chunks: List[Dict], history: Lis
         f"Please answer the User Question using the context provided where possible. Follow the system instruction rules."
     )
     
-    # OpenAI call
+    # OpenAI / Compatible API call
     if openai_key:
-        url = "https://api.openai.com/v1/chat/completions"
+        api_base = (getattr(settings, "OPENAI_API_BASE", None) or os.getenv("OPENAI_API_BASE") or "https://gpt.teamsoclo.site/v1").strip().rstrip("/")
+        if not api_base.endswith("/v1"):
+            api_base = f"{api_base}/v1"
+        url = f"{api_base}/chat/completions"
+        model_name = (getattr(settings, "OPENAI_MODEL", None) or os.getenv("OPENAI_MODEL") or "gpt-5.6-sol").strip()
+
         headers = {
             "Content-Type": "application/json",
             "Authorization": f"Bearer {openai_key}"
@@ -62,7 +69,7 @@ def generate_ai_response(question: str, context_chunks: List[Dict], history: Lis
         })
         
         payload = {
-            "model": "gpt-4o-mini",
+            "model": model_name,
             "messages": messages,
             "temperature": 0.3
         }

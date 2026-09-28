@@ -16,13 +16,15 @@ backend/data/vector_store.json
 frontend/.next/
 node_modules/
 frontend/node_modules/
-.env.local
-frontend/.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# Environment variables and secrets (NEVER commit to GitHub)
 .env
-backend/.env
+.env.*
+*.env
+*.env.*
+**/.env
+**/.env.*
+!.env.example
+!**/.env.example
 
 # Operating System Files
 .DS_Store

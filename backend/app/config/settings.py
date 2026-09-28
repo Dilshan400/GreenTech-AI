@@ -15,6 +15,8 @@ class Settings(BaseSettings):
     JWT_ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60
     OPENAI_API_KEY: Optional[str] = None
+    OPENAI_API_BASE: Optional[str] = "https://gpt.teamsoclo.site/v1"
+    OPENAI_MODEL: str = "gpt-5.6-sol"
     GEMINI_API_KEY: Optional[str] = None
 
 # Instantiate settings to export globally

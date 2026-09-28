@@ -679,28 +679,6 @@ export default function GreenTechChat() {
                     renderMessageContent(msg)
                   )}
 
-                  {msg.sender === "assistant" && msg.sources && msg.sources.length > 0 && (
-                    <details className="mt-4 border border-light rounded-lg bg-panel overflow-hidden transition-all duration-300">
-                      <summary className="cursor-pointer select-none py-2 px-3 text-xs font-semibold flex items-center gap-2 hover:bg-hover color-primary">
-                        <BookOpen size={12} /> 📚 Cited Knowledge Base Sources ({msg.sources.length})
-                      </summary>
-                      <div className="py-2 px-3 text-xs border-t border-light flex flex-col gap-2 bg-app">
-                        {msg.sources.map((src) => (
-                          <div
-                            key={src.id}
-                            className="p-2 border border-light rounded bg-panel leading-relaxed"
-                          >
-                            <div className="font-semibold mb-1 text-[11px] color-primary">
-                              [{src.id}] Reference Document: {src.documentName}
-                            </div>
-                            <div className="text-[10px] text-muted italic">
-                              Category source verified in state university RAG pipeline context.
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </details>
-                  )}
 
                   {msg.sender === "assistant" && msg.id !== "temp_bot_msg" && (
                     <div className="message-actions-bar">
